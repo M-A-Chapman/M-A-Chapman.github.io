@@ -13,5 +13,7 @@ jobs:
       run: echo Hello, world!
     - name: Run a multi-line script
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        if git rev-parse --verify -q $commitid^2 > dev/null; then
+          echo commit has 2 parents, $commitid is a merge commit;
+        else
+          echo commit $commitid is a simple commit
