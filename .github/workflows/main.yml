@@ -3,17 +3,14 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-
+  checkCommit:
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        if git rev-parse --verify -q $commitid^2 > dev/null; then
-          echo commit has 2 parents, $commitid is a merge commit;
-        else
-          echo commit $commitid is a simple commit
+      - name: step 1
+        run: echo "Hello, world!"
+      - name: step 2a
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+        run: echo "commit has 2 parents, $commitid is a merge commit"
+      - name: step 2b
+        if: github.event_name != 'pull_request'  && github.event.action != 'closed'
+        run: echo "commit $commitid is a simple commit"
