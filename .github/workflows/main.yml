@@ -6,11 +6,11 @@ jobs:
   checkCommit:
     runs-on: ubuntu-latest
     steps:
-      - name: hello world
-        run:  echo "Hello, world!"
-      - name: Run a multi-line script
-        if:   "git rev-parse --verify -q $commitid^2 > dev/null"
-        run:  |
-              echo "commit has 2 parents, $commitid is a merge commit"
-        if:   "!(git rev-parse --verify -q $commitid^1 > dev/null)"
-              echo "commit $commitid is a simple commit"
+      - name: step1
+        run: echo "Hello, world!"
+      - name: step2
+        if: "git rev-parse --verify -q $commitid^2 > dev/null"
+        run: |
+            echo "commit has 2 parents, $commitid is a merge commit"
+        if: "!(git rev-parse --verify -q $commitid^1 > dev/null)"
+            echo "commit $commitid is a simple commit"
