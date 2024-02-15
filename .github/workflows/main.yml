@@ -9,7 +9,7 @@ jobs:
       - name: step 1
         run: |
           echo "Hello, world!"
-          echo "${{ github.event.pull_request.merged }}"
+          echo "${{ github.event.pull_request }}"
       - name: step 2a
         if: github.event.pull_request.merged == true
         run: echo "commit has 2 parents, $commitid is a merge commit"
