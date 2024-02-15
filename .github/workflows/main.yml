@@ -10,10 +10,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Run a one-line script
-      run: echo Hello, world!
+      run: echo "Hello, world!"
     - name: Run a multi-line script
-      if: git rev-parse --verify -q $commitid^2 > dev/null
+      if: "git rev-parse --verify -q $commitid^2 > dev/null"
       run: |
-          echo commit has 2 parents, $commitid is a merge commit;
-        else
-          echo commit $commitid is a simple commit
+          echo "commit has 2 parents, $commitid is a merge commit"
+      if: "!(git rev-parse --verify -q $commitid^1 > dev/null)"
+          echo "commit $commitid is a simple commit"
