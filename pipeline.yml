@@ -9,9 +9,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
+    - name: hello World
       run: echo Hello, world!
-    - name: Run a multi-line script
+    - name: Check commit type
       run: |
         if git rev-parse --verify -q $commitid^2 > dev/null; then
           echo commit has 2 parents, $commitid is a merge commit;
