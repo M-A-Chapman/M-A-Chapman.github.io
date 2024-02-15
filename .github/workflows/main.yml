@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: step 1
-        run: echo "Hello, world!"
+        run: |
+          echo "Hello, world!"
+          echo "${{ github.event.pull_request.merged }}"
       - name: step 2a
         if: github.event.pull_request.merged == true
         run: echo "commit has 2 parents, $commitid is a merge commit"
