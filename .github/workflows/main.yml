@@ -9,8 +9,8 @@ jobs:
       - name: step 1
         run: echo "Hello, world!"
       - name: step 2a
-        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+        if: github.event.pull_request.merged == true
         run: echo "commit has 2 parents, $commitid is a merge commit"
       - name: step 2b
-        if: github.event_name != 'pull_request'  && github.event.action != 'closed'
+        if: github.event.pull_request.merged == false
         run: echo "commit $commitid is a simple commit"
